@@ -24,7 +24,7 @@ const MainStack = createStackNavigator({
     Main: {
         screen:Main,
         navigationOptions :{
-            title: 'Home',
+            title: 'Soya Nakagawa',
         }
 
     },
