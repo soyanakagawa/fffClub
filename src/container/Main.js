@@ -60,7 +60,7 @@ export default class Main extends Component {
                             <Text style={styles.text}>フォロワー90000人</Text>
                         </View>
                         <View style={styles.slide3}>
-                            <Text style={styles.text}>Yushimatenjin</Text>
+                            <Text style={styles.text}>アファメーション</Text>
                         </View>
                     </Swiper>
                 </View>

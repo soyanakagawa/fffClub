@@ -11,7 +11,6 @@ export default class CardListExample extends Component {
                         <ListItem>
                             <Text>このアプリをシェア</Text>
                         </ListItem>
-
                         <ListItem>
                             <Text>レビューを書く</Text>
                         </ListItem>
