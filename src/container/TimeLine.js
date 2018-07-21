@@ -93,7 +93,7 @@ export default class App extends React.Component {
                 return   {
                     _id: _id,
                     text: text,
-                    createdAt: new Date(),
+                    createdAt: new Date(value.createdAt),
                     user: {
                         _id: userId,
                         name: '名もなきファン',
