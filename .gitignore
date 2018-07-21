@@ -2,30 +2,6 @@
 #
 .DS_Store
 
-# Xcode
-#
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
-
-# Pods Files
-#
-Pods/
-
 # Android/IntelliJ
 #
 build/
@@ -49,27 +25,11 @@ buck-out/
 *.keystore
 !debug.keystore
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
-*/fastlane/test_output/
 
 # bundler
 bundle
 .bundle
 vendor/bundle
-
-# 適用するfirebase設定ファイルをgit管理下から除外
-# @see https://github.com/FACT-BASE/SignalApp/pull/102
-android/app/google-services.json
-ios/GoogleService-Info.plist
 
 # Cloud Functions
 firebase-cli/dist/*
@@ -92,3 +52,6 @@ tags
 
 # End of https://www.gitignore.io/api/vim
 ios/SignalApp.app.dSYM.zip
+
+# enviroment valiables
+env.js
