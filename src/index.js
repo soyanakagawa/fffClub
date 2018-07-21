@@ -6,34 +6,72 @@ import Settings from './container/Settings'
 import Main from './container/Main'
 import TimeLine from './container/TimeLine'
 
-import { Ionicons } from '@expo/vector-icons';
+import {
+    Entypo,
+    EvilIcons,
+    Feather,
+    FontAwesome,
+    Foundation,
+    MaterialIcons,
+    MaterialCommunityIcons,
+    Octicons,
+    Zocial,
+    SimpleLineIcons
+} from '@expo/vector-icons';
 
 
 const MainStack = createStackNavigator({
-    Main: Main,
+    Main: {
+        screen:Main,
+        navigationOptions :{
+            title: 'Home',
+        }
+
+    },
 });
 
 const TimeLineStack = createStackNavigator({
-    TimeLine: TimeLine,
+    TimeLine: {
+        screen:TimeLine,
+        navigationOptions :{
+            title: 'タイムライン',
+        }
+
+    },
 });
 
 
 const SettingStack = createStackNavigator({
-    Settings: Settings,
+    Settings: {
+        screen:Settings,
+        navigationOptions :{
+            title: '設定',
+        }
+
+    },
 });
+
 
 
 export default createBottomTabNavigator({
     Main: {
         screen: MainStack,
         navigationOptions: {
-            tabBarIcon: <Ionicons name="md-checkmark-circle" size={32} color="green"/>
-
+            tabBarIcon: <EvilIcons name="star" size={32}/>
         }
-
     },
-    TimeLine: TimeLineStack,
-    Settings: SettingStack
+    TimeLine: {
+        screen:TimeLineStack,
+        navigationOptions: {
+            tabBarIcon: <EvilIcons name="comment" size={32}/>
+        }
+    },
+    Settings: {
+        screen:Settings,
+        navigationOptions: {
+            tabBarIcon: <EvilIcons name="gear" size={32}/>
+        }
+    }
 
 }, {
     tabBarOptions: {
