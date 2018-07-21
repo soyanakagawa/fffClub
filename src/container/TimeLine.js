@@ -23,6 +23,7 @@ export default class App extends React.Component {
             userId: ""
         }
         this.addAuto = this.addAuto.bind(this)
+        this.onPressLoad = this.onPressLoad.bind(this)
     }
 
     componentWillMount() {
@@ -65,20 +66,46 @@ export default class App extends React.Component {
     }
 
     onSend(messages = []) {
-         const { text,_id,user,createdAt} = messages[0]
+        const {text, _id, user, createdAt} = messages[0]
         console.log(new Date(createdAt))
         firebase.database().ref("messages/" + _id).set({
-                 messages: messages[0],
-                 createdAt: `${createdAt}`
+            messages: messages[0],
+            createdAt: `${createdAt}`
         })
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, messages),
         }))
     }
 
-    onPressLoad(){
+    onPressLoad() {
+
+        console.log(this.state.messages)
         firebase.database().ref('messages').on('value', (snapshot) => {
-          console.log(snapshot.val());
+            // console.log(snapshot.val());
+            result = snapshot.val()
+            result = Object.values(result)
+            // console.log(result)
+            messages = result.map((value, index) => {
+                // console.log(value)
+                const {text, user,_id} = value.messages
+
+                let userId = user._id
+                return   {
+                    _id: _id,
+                    text: text,
+                    createdAt: new Date(),
+                    user: {
+                        _id: userId,
+                        name: '名もなきファン',
+                        avatar: "https://placeimg.com/140/140/any"
+                    }
+                }
+            })
+            console.log(messages)
+            this.setState({
+                messages: messages
+            })
+            console.log(this.state.messages)
         })
 
     }
