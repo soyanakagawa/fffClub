@@ -1,17 +1,27 @@
 import React from "react";
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View,ScrollView} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {GiftedChat} from 'react-native-gifted-chat'
 import {
+    compose,
     applyMiddleware,
     combineReducers,
     createStore,
 } from 'redux';
+import {connect} from 'react-redux'
+import {config} from "../../env";
+import * as firebase from 'firebase';
+// firebase.initializeApp(config);
 
 export default class App extends React.Component {
 
-    state = {
-        messages: [],
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            messages: [],
+        }
+        this.addAuto = this.addAuto.bind(this)
     }
 
     componentWillMount() {
@@ -38,7 +48,20 @@ export default class App extends React.Component {
         })
     }
 
+    componentDidMount() {
+
+    }
+
+    addAuto() {
+    }
+
     onSend(messages = []) {
+
+        
+        console.log(messages)
+        firebase.database().ref('messages').set({
+            text: "TestDayoooo"
+        })
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, messages),
         }))
@@ -47,6 +70,8 @@ export default class App extends React.Component {
     render() {
         return (
             <GiftedChat
+                loadEarlier={true}
+                onLoadEarlier={()=>alert("XSS")}
                 messages={this.state.messages}
                 onSend={messages => this.onSend(messages)}
                 user={{
