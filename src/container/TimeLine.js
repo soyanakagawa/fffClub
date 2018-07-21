@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View,ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, AsyncStorage} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {GiftedChat} from 'react-native-gifted-chat'
 import {
@@ -68,6 +68,11 @@ export default class App extends React.Component {
     }
 
     render() {
+      // try {
+      //   const value = await AsyncStorage.getItem('userId')
+      // } cache {
+      //   //OMG
+      // }
         return (
             <GiftedChat
                 loadEarlier={true}
