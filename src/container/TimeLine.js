@@ -66,10 +66,10 @@ export default class App extends React.Component {
 
     onSend(messages = []) {
          const { text,_id,user,createdAt} = messages[0]
-        console.log(messages)
+        console.log(new Date(createdAt))
         firebase.database().ref("messages/" + _id).set({
                  messages: messages[0],
-                 createdAt: createdAt,
+                 createdAt: `${createdAt}`
         })
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, messages),
