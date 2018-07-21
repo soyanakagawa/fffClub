@@ -20,11 +20,20 @@ export default class App extends React.Component {
 
         this.state = {
             messages: [],
+            userId: ""
         }
         this.addAuto = this.addAuto.bind(this)
     }
 
     componentWillMount() {
+
+        AsyncStorage.getItem('userId').then((value) => {
+
+            this.setState({
+                userId: value
+            })
+        })
+
         this.setState({
             messages: [
                 {
@@ -56,11 +65,11 @@ export default class App extends React.Component {
     }
 
     onSend(messages = []) {
-
-        
+         const { text,_id,user,createdAt} = messages[0]
         console.log(messages)
-        firebase.database().ref('messages').set({
-            text: "TestDayoooo"
+        firebase.database().ref("messages/" + _id).set({
+                 messages: messages[0],
+                 createdAt: createdAt,
         })
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, messages),
@@ -68,19 +77,19 @@ export default class App extends React.Component {
     }
 
     render() {
-      // try {
-      //   const value = await AsyncStorage.getItem('userId')
-      // } cache {
-      //   //OMG
-      // }
+        // try {
+        //   const value = await AsyncStorage.getItem('userId')
+        // } cache {
+        //   //OMG
+        // }
         return (
             <GiftedChat
                 loadEarlier={true}
-                onLoadEarlier={()=>alert("XSS")}
+                onLoadEarlier={() => alert("XSS")}
                 messages={this.state.messages}
                 onSend={messages => this.onSend(messages)}
                 user={{
-                    _id: 1,
+                    _id: this.state.userId
                 }}
             />
         )
