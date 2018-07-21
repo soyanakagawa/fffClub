@@ -76,6 +76,13 @@ export default class App extends React.Component {
         }))
     }
 
+    onPressLoad(){
+        firebase.database().ref('messages').on('value', (snapshot) => {
+          console.log(snapshot.val());
+        })
+
+    }
+
     render() {
         // try {
         //   const value = await AsyncStorage.getItem('userId')
@@ -85,7 +92,7 @@ export default class App extends React.Component {
         return (
             <GiftedChat
                 loadEarlier={true}
-                onLoadEarlier={() => alert("XSS")}
+                onLoadEarlier={() => this.onPressLoad()}
                 messages={this.state.messages}
                 onSend={messages => this.onSend(messages)}
                 user={{
